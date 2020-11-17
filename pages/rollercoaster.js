@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import { FaPause, FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
+import {useRouter} from 'next/router'
 import { useEffect, useRef, useState } from "react";
 import { Box } from "rebass";
 import { Control } from "../components/control";
@@ -11,6 +12,7 @@ import {
   FacebookShareCount,
   RedditShareButton,
 } from "react-share";
+import { NextSeo } from "next-seo";
 
 const Rollercoaster = () => {
   const [playing, setPlaying] = useState();
@@ -34,6 +36,8 @@ const Rollercoaster = () => {
   const [count, setCount] = useState();
   const [innerW, setInnerW] = useState();
 
+  const router = useRouter();
+
   useEffect(() => {
     typeof window !== "undefined" && setInnerW(window.innerWidth);
     console.log(innerW);
@@ -46,6 +50,9 @@ const Rollercoaster = () => {
   function checkKey(e) {
     e = e || window.event;
     switch (e.keyCode) {
+      case 32:
+        setPlaying(!playing)
+        break;
     }
   }
 
@@ -68,7 +75,7 @@ const Rollercoaster = () => {
       playing &&
       setInterval(() => {
         var j = playing && player ? player.current.getCurrentTime() : 0;
-        setCurrentTime(+j.toFixed(0));
+        playing && setCurrentTime(+j.toFixed(0));
         i++;
       }, 1000);
     player && playing && int;
@@ -77,14 +84,18 @@ const Rollercoaster = () => {
   }, [playing]);
 
   var d = new Date(currentTime * 1000);
+  var dur = player && playing && player.current.getDuration();
   return (
     <div className={styles.container}>
+      <NextSeo
+      title={playing ? 'rasha - rollercoaster (2020)' : 'twenty by rasha'}
+    />
       <Control
         setMute={setMute}
         mute={mute}
         vol={vol}
         setVol={setVol}
-        mobile={innerW ? innerW < 500 && true : false}
+        mobile={innerW ? innerW < 768 && true : false}
       />
       <div className={styles.player}>
         <h1
@@ -94,10 +105,20 @@ const Rollercoaster = () => {
         >
           Rollercoaster
         </h1>
+        <h4
+        onClick={() => router.push('/')}
+          style={{
+            color: "#ff90f9",
+            textDecoration: 'underline',
+            cursor: 'pointer'
+          }}
+        >
+          twenty by rasha
+        </h4>
         <p className={styles.description}>
            Release Date: Nov 20, 2020 <code onClick={() => window.location.assign('https://t.co/c2JwJ7hsaI?amp=1')} className={styles.code} style={{color: 'white'}}>pre-save now</code>
         </p>
-        {count && <h4>{count} plays listened by amazing ppl</h4>}
+        {count && <h4>{count} plays</h4>}
 
         <div
           style={{
@@ -170,9 +191,8 @@ const Rollercoaster = () => {
               background: "linear-gradient(120deg,#ff90f9,#5da9ff)",
               borderRadius: 10,
               width:
-                player &&
-                playing &&
-                (currentTime / player.current.getDuration()) * 101 + "%",
+                player && dur &&
+                (currentTime / dur) * 101 + "%",
               transition: "all 600ms",
               height: "100%",
             }}
