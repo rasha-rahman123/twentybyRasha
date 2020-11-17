@@ -94,6 +94,9 @@ const Rollercoaster = () => {
         >
           Rollercoaster
         </h1>
+        <p className={styles.description}>
+           Release Date: Nov 20, 2020 <code onClick={() => window.location.assign('https://t.co/c2JwJ7hsaI?amp=1')} className={styles.code} style={{color: 'white'}}>pre-save now</code>
+        </p>
         {count && <h4>{count} plays listened by amazing ppl</h4>}
 
         <div
@@ -149,7 +152,7 @@ const Rollercoaster = () => {
               sx={{
                 position: "absolute",
                 zIndex: 2,
-                top: "58%",
+                top: "72%",
                 left: mouse ? mouse * 100 + "%" : "0",
                 opacity: 0.8,
                 backgroundColor: "#ff90f9",
