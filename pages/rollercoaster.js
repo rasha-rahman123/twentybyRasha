@@ -8,8 +8,10 @@ import fetch from 'isomorphic-unfetch';
 import {
     TwitterShareButton,
     FacebookShareButton,
+    FacebookShareCount,
     RedditShareButton,
   } from "react-share";
+
 
 const Rollercoaster = () => {
   const [playing, setPlaying] = useState();
@@ -20,6 +22,8 @@ const Rollercoaster = () => {
 
   const [vol, setVol] = useState(100);
   const [mute, setMute] = useState(false);
+
+  const url = 'https://github.com/rasha-rahman123/twentybyRasha/blob/main/public/RC.mp3?raw=true'
   const player = useRef();
 
   useEffect(() => {
@@ -57,7 +61,7 @@ const Rollercoaster = () => {
     const int =
       playing &&
       setInterval(() => {
-        var j = player.current.getCurrentTime();
+        var j = player && player.current.getCurrentTime();
         setCurrentTime(+j.toFixed(0));
         i++;
       }, 1000);
@@ -75,6 +79,7 @@ const Rollercoaster = () => {
             color: '#5da9ff'
         }}>Rollercoaster</h1>
         {count && <h4>{count} plays listened by amazing ppl</h4>}
+
         <div style={{
             width: '100%',
             justifyContent: 'right',
@@ -157,7 +162,7 @@ const Rollercoaster = () => {
           {playing ? <FaPause /> : <FaPlay />}
         </div>
         <ReactPlayer
-          url="http://localhost:3000/RC.mp3"
+          url={url}
           ref={player}
           width="100%"
           height="100%"
