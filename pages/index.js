@@ -49,10 +49,7 @@ export const Home = () => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+ 
 
       <main className={styles.main}>
         {/* <Control setMute={setMute} mute={mute} vol={vol} setVol={setVol} /> */}

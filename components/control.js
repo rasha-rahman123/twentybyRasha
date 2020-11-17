@@ -2,7 +2,7 @@ import { Box } from "rebass"
 import { GoUnmute,GoMute } from 'react-icons/go';
 import InputSlider from "react-input-slider";
 
-export const Control = ({setVol, setMute, mute, vol}) => {
+export const Control = ({setVol, setMute, mute, mobile, vol}) => {
     return <div style={{
         position: 'absolute',
         top: 0, 
@@ -15,7 +15,7 @@ export const Control = ({setVol, setMute, mute, vol}) => {
             flexDirection: 'space-around',
             cursor: 'pointer'
         }}>
-    {mute ? <GoMute onClick={()=> setMute(!mute)} /> : <GoUnmute onClick={()=> setMute(!mute)}  />} <div style={{
+    {mute ? <GoMute onClick={()=> setMute(!mute)} /> : <GoUnmute onClick={()=> setMute(!mute)}  />} {!mobile && <div style={{
             marginLeft: 10
         }}> <InputSlider
         styles={{
@@ -38,7 +38,7 @@ export const Control = ({setVol, setMute, mute, vol}) => {
         axis="x"
         x={vol}
         onChange={({ x }) => setVol(x)}
-      /></div>
+      /></div>}
         </Box>
         <Box>
            
