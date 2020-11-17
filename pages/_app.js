@@ -14,13 +14,13 @@ function MyApp({ Component, pageProps }) {
     description: `Sophomore EP from Los Angeles songwriter and producer, Rasha Rahman. After his hit single, 'cellophane' w Umru (@umru_) and Sophie Meiers (@sophiemeiers), Rasha has new words to tell the world. This ep conveys Rasha's feelings towards his relationship. He uses Neo Soul and RNB to convey that.`,
     images: [
       {
-        url: 'https://pbs.twimg.com/media/Em1cLJUUUAAQgO5?format=jpg&name=4096x4096',
+        url: 'https://i.imgur.com/SA1x8PT.jpg',
         width: 800,
         height: 600,
         alt: 'Cover Art',
       },
       {
-        url: 'https://pbs.twimg.com/media/Em1cSzXUcAAhvej?format=jpg&name=4096x4096',
+        url: 'https://i.imgur.com/icsnR8o.jpg',
         width: 900,
         height: 800,
         alt: 'Tracklist',
