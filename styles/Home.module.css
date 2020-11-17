@@ -1,0 +1,216 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.main {
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer img {
+  margin-left: 0.5rem;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title a {
+  color: #5da9ff;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.code {
+  background: linear-gradient(90deg,#5da9ff,#ffffff,#ff90f9);
+  background-size: 600% 600%;
+  display: block;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+    transition: transform 300ms ease-in-out, background-position-x 1s ease;
+  transform: scale(0.95);
+  background-position-y: 50;
+  background-position-x: 0;
+}
+.code:hover,
+.code:focus,
+.code:active {
+background-position-x: 100%;
+
+  cursor: pointer;
+  transform: scale(1);
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin-top: 3rem;
+}
+
+.card {
+  margin: 4rem;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 10px;
+  
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.bar {
+  transition: all 300ms ease-in-out;
+}
+.player {
+  color: #ff90f9;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.play {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.4;
+  overflow: hidden;
+}
+.carf {
+  margin: 4rem;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.4;
+  border-radius: 10px;
+  
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.playpause {
+  color: #5da9ff;
+  transition: all 300ms ease;
+}
+.playpause:hover {
+  color: #ff90f9
+}
+
+.carded {
+  margin: 2rem;
+ 
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: #5da9ff;
+  text-decoration: none;
+  border: none;
+  border-color: #ff90f9;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease-in-out;
+}
+
+.cardeded {
+  margin: 2rem;
+ 
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: #ffe75d;
+  text-decoration: none;
+  border: none;
+  border-color: #ff90f9;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease-in-out;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #ff90f9;
+border: none;
+  cursor: pointer;
+  transform: scale(1.02);
+ 
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.carded h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.carded p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+.logo {
+  height: 1em;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
