@@ -77,6 +77,28 @@
   background-position-y: 50;
   background-position-x: 0;
 }
+.coded {
+  background: linear-gradient(90deg,#5da9ff,#ffffff,#ff90f9);
+  background-size: 600% 600%;
+  display: block;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+    transition: transform 300ms ease-in-out, background-position-x 1s ease;
+  transform: scale(1.05);
+  background-position-y: 50;
+  background-position-x: 0;
+}
+.coded:hover,
+.coded:focus,
+.coded:active {
+background-position-x: 100%;
+
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 .code:hover,
 .code:focus,
 .code:active {
@@ -213,4 +235,11 @@ border: none;
     width: 100%;
     flex-direction: column;
   }
+}
+
+.container h6 {
+  color: rgb(155, 141, 141)
+}
+.container h6:hover {
+  color: rgb(71, 65, 65)
 }

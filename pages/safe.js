@@ -1,9 +1,9 @@
 import styles from "../styles/Home.module.css";
 import { FaPause, FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { Box } from "rebass";
+import { Box, Link } from "rebass";
 import { Control } from "../components/control";
 import fetch from "isomorphic-unfetch";
 import {
@@ -15,18 +15,19 @@ import {
 import { NextSeo } from "next-seo";
 import { Tracklist } from "../components/tracklist";
 
-const Rollercoaster = () => {
+const Safe = () => {
   const [playing, setPlaying] = useState();
   const [currentTime, setCurrentTime] = useState(0);
   const [seek, setSeek] = useState();
+  const [toggleSite, setToggleSite] = useState(false)
   const [mouse, setMouse] = useState();
+  const [mouse2, setMouse2] = useState();
   const [hov, setHov] = useState();
 
   const [vol, setVol] = useState(100);
   const [mute, setMute] = useState(false);
 
-  const url =
-    "https://github.com/rasha-rahman123/twentybyRasha/blob/main/public/RC.mp3?raw=true";
+  const url = "http://localhost:3000/full/SAFE.mp3";
   const player = useRef();
 
   useEffect(() => {
@@ -46,39 +47,45 @@ const Rollercoaster = () => {
 
   useEffect(() => {
     document.onkeydown = checkKey;
+    document.onmousemove = checkMouse;
   });
 
   function checkKey(e) {
     e = e || window.event;
     switch (e.keyCode) {
       case 32:
-        setPlaying(!playing)
+        setPlaying(!playing);
         break;
     }
   }
 
+  function checkMouse(e) {
+    e = e || window.event;
+    setMouse2(e.clientY)
+  }
   useEffect(() => {
     updateView();
     playing && setPlaying(false);
   }, []);
 
   function updateView() {
-    fetch("https://api.countapi.xyz/update/twerasha/rollercoaster/?amount=1")
+    fetch("https://api.countapi.xyz/update/twerasha/safe/?amount=1")
       .then((res) => res.json())
       .then((res) => {
         setCount(res.value);
       });
   }
-
   const seekChorus = () => {
-    player && player.current.seekTo(27,'seconds');
+    player && player.current.seekTo(10, "seconds");
     setPlaying(true);
-  }
+  };
 
   const seekVerse = (ver) => {
-    player && ver > 1 ? player.current.seekTo(118,'seconds') : player.current.seekTo(52,'seconds');
+    player && ver > 1
+      ? player.current.seekTo(113, "seconds")
+      : player.current.seekTo(45, "seconds");
     setPlaying(true);
-  }
+  };
   useEffect(() => {
     let i = 0;
     const int =
@@ -96,10 +103,8 @@ const Rollercoaster = () => {
   var d = new Date(currentTime * 1000);
   var dur = player && playing && player.current.getDuration();
   return (
-    <div className={styles.container}>
-      <NextSeo
-      title={playing ? 'rasha - rollercoaster (2020)' : 'twenty by rasha'}
-    />
+    toggleSite ? <div className={styles.container}>
+      <NextSeo title={playing ? "rasha - safe (2020)" : "twenty by rasha"} />
       <Control
         setMute={setMute}
         mute={mute}
@@ -113,21 +118,29 @@ const Rollercoaster = () => {
             color: "#5da9ff",
           }}
         >
-          "Rollercoaster"
+          Safe
         </h1>
         <h4
-        onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           style={{
             color: "#ff90f9",
-            fontSize: 100,
-            margin: 0,
-            cursor: 'pointer'
+            textDecoration: "underline",
+            cursor: "pointer",
           }}
         >
           twenty by rasha
         </h4>
         <p className={styles.description}>
-           Release Date: Nov 20, 2020 <code onClick={() => window.location.assign('https://t.co/c2JwJ7hsaI?amp=1')} className={styles.code} style={{color: 'white'}}>pre-save now</code>
+          Release Date: Dec 11, 2020{" "}
+          <code
+            onClick={() =>
+              window.location.assign("https://t.co/c2JwJ7hsaI?amp=1")
+            }
+            className={styles.code}
+            style={{ color: "white" }}
+          >
+            pre-save now
+          </code>
         </p>
         {count && <h4>{count} plays</h4>}
 
@@ -148,7 +161,7 @@ const Rollercoaster = () => {
               : "3:" + (currentTime - 180)}
           </div>
         </div>
-        <Tracklist track="rollercoaster" />
+        <Tracklist track="safe" />
         <Box
           className={styles.bar}
           onMouseEnter={() => setHov(true)}
@@ -185,7 +198,7 @@ const Rollercoaster = () => {
               sx={{
                 position: "absolute",
                 zIndex: 2,
-                top: "72%",
+                top: mouse2 - 60,
                 left: mouse ? mouse * 100 + "%" : "0",
                 opacity: 0.8,
                 backgroundColor: "#ff90f9",
@@ -202,9 +215,7 @@ const Rollercoaster = () => {
               left: 0,
               background: "linear-gradient(120deg,#ff90f9,#5da9ff)",
               borderRadius: 10,
-              width:
-                player && dur &&
-                (currentTime / dur) * 101 + "%",
+              width: player && dur && (currentTime / dur) * 101 + "%",
               transition: "all 600ms",
               height: "100%",
             }}
@@ -232,47 +243,74 @@ const Rollercoaster = () => {
           volume={vol && vol / 100}
         />
       </div>
-      <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          color: 'white',
-          opacity: 0.4
-     }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          color: "white",
+          opacity: 0.4,
+        }}
+      >
         <div>
-        <h6 onClick={() => seekChorus()} style={{marginBottom: 0, cursor: 'pointer'}}>chorus</h6>
-          cause every day I<br />
-          hold my prayers high<br />
-          look at you I <br />
-          can't hold back <br />
-          cause in the nighttime <br />
-          youve dressed up real fine <br />
-         i wanna take you back to mine<br />
+          <h6
+            onClick={() => seekChorus()}
+            style={{ marginBottom: 0, cursor: "pointer" }}
+          >
+            chorus
+          </h6>
+          can i feel safe w you
+          <br />
+          cause you feel safe w me <br />
+          i know i feel safe w you <br />
+          cuz thats the way its supposed to be <br />
         </div>
-        <div style={{
-            margin: '0 10px'
-        }}>
+        <div
+          style={{
+            margin: "0 10px",
+          }}
+        >
           <div>
-          <h6 onClick={() => seekVerse(1)}  style={{marginBottom: 0, cursor: 'pointer'}}>verse 1</h6>
-          lets go, I wanna love you baby but we should start slow <br />
-          And then move up the pace, like its a crescendo <br />
-          If I give you all that I got, would you come and show <br />
-          In love thats w you I can feel my heart glow<br />
-          I see yours too popping like a pimple, its popping like a pimple <br />
-          Love me, love me, I see through, I see you <br />
+            <h6
+              onClick={() => seekVerse(1)}
+              style={{ marginBottom: 0, cursor: "pointer" }}
+            >
+              verse 1
+            </h6>
+            do you wanna come down, tonight <br />
+            we could make lowkey, and quiet <br />
+            we can do it slowly, and silent
+            <br />
+            move your hips w my hips, im flying
+            <br />
+            ah, im <br />
+            on me
+            <br />
           </div>
           <div>
-          <h6 onClick={() => seekVerse(2)} style={{marginBottom: 0, marginTop: 0, cursor: 'pointer'}}>verse 2</h6>
-          shes the rollercoaster, and im the passenger <br />
-          its so exciting, its so thrilling, <br />
-          i wanna stand in line, over and over again<br />
-          i wanna stand in line for you, over and over again <br />
+            <h6
+              onClick={() => seekVerse(2)}
+              style={{ marginBottom: 0, marginTop: 0, cursor: "pointer" }}
+            >
+              verse 2
+            </h6>
+            fast forward to a bright blue day
+            <br />
+            cause your looking gorgeous, smiling bigger than a lake <br />
+            i want you, i want it, i want you, i want it
+            <br />
+            i want you today
+            <br />
+          </div>
         </div>
-        </div>
-        
       </div>
-    </div>
-  );
+      </div>
+  : <div className={styles.container}>
+     <Tracklist track="safe" />
+    <span>Twenty by Rasha Coming Soon Dec 11th</span>
+   <Link href="/">go back to home page here</Link>
+  </div>);
 };
 
-export default Rollercoaster;
+
+export default Safe;
