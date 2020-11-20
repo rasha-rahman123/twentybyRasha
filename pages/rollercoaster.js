@@ -1,5 +1,5 @@
 import styles from "../styles/Home.module.css";
-import { FaPause, FaPlay } from "react-icons/fa";
+import { FaPause, FaPlay, FaSpotify, FaApple } from "react-icons/fa";
 import ReactPlayer from "react-player";
 import {useRouter} from 'next/router'
 import { useEffect, useRef, useState } from "react";
@@ -126,8 +126,12 @@ const Rollercoaster = () => {
         >
           twenty by rasha
         </h4>
-        <p className={styles.description}>
-           Release Date: Nov 20, 2020 <code onClick={() => window.location.assign('https://t.co/c2JwJ7hsaI?amp=1')} className={styles.code} style={{color: 'white'}}>pre-save now</code>
+        <p className={styles.description} style={{
+          flexDirection: 'row',
+          display: 'flex'
+        }}>
+        Release Date: Nov 20, 2020 <code onClick={() => window.location.assign('https://open.spotify.com/track/6sPyUrlStW5qhO5AVT9q95')} className={styles.code} style={{color: 'white', width: '100px', fontSize: '2rem', display: 'block', marginLeft: 10}}>{<FaSpotify />}</code>
+        <code onClick={() => window.location.assign('https://music.apple.com/us/album/rollercoaster-single/1540464078?uo=4&app=itunes&at=1001lry3&ct=dashboard')} className={styles.code} style={{color: 'white', width: '100px', fontSize: '2rem',}}>{<FaApple />}</code>
         </p>
         {count && <h4>{count} plays</h4>}
 
