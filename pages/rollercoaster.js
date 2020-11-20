@@ -181,24 +181,10 @@ const Rollercoaster = () => {
             backgroundColor: "black",
             borderRadius: 10,
             height: 10,
-            cursor: "none",
+            cursor: "pointer",
           }}
         >
-          {hov && (
-            <Box
-              sx={{
-                position: "absolute",
-                zIndex: 2,
-                top: "72%",
-                left: mouse ? mouse * 100 + "%" : "0",
-                opacity: 0.8,
-                backgroundColor: "#ff90f9",
-
-                width: 10,
-                height: 20,
-              }}
-            ></Box>
-          )}
+          
           <Box
             sx={{
               position: "relative",

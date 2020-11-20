@@ -58,7 +58,7 @@ export const Home = () => {
         </h1>
 
         <p className={styles.description}>
-          Stream Dec 11th 2020 <code onClick={() => window.location.assign('https://t.co/c2JwJ7hsaI?amp=1')} className={styles.code}>pre-save now</code>
+          Stream Dec 11th 2020 <code onClick={() => window.location.assign('https://t.co/c2JwJ7hsaI?amp=1')} className={styles.code}>pre-save coming soon</code>
         </p>
         <ReactPlayer
           url={url}
